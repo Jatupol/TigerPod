@@ -2,7 +2,7 @@
 # ==================== PRODUCTION STAGE ====================
 
 # Use the smallest, most secure Nginx base image.
-FROM nginx:alpine AS production
+FROM docker.io/library/nginx:alpine AS production
 
 # Install only essential runtime packages and utilities.
 # Removed: samba, nano, netcat-openbsd.
