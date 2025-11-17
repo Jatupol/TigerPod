@@ -74,10 +74,6 @@ RUN mkdir -p /app /app/logs /app/uploads /app/reports /app/temp && \
 # Set working directory
 WORKDIR /app
 
-# Copy startup script and make it executable (before switching to non-root user)
-COPY --chown=qcuser:qcuser start.sh /app/start.sh
-RUN chmod +x /app/start.sh
-
 # Switch to non-root user
 USER qcuser
 
@@ -133,7 +129,7 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
 
 # ==================== ENTRYPOINT & CMD ====================
 ENTRYPOINT ["tini", "--"]
-CMD ["/app/start.sh"]
+CMD ["node", "dist/server.js"]
 
 # ==================== CONTAINER LABELS ====================
 LABEL org.opencontainers.image.title="Sampling Inspection Control System Backend"
